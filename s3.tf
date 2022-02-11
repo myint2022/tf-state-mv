@@ -4,7 +4,6 @@ resource "aws_s3_bucket" "max-2022-s3-bucket" {
   #checkov:skip=CKV_AWS_145: Ensure that S3 buckets are encrypted with KMS by default
   #checkov:skip=CKV_AWS_52: Ensure S3 bucket has MFA delete enabled
   provider = aws.master
-
   acceleration_status = "Enabled"
   acl                 = "private"
   arn                 = "arn:aws:s3:::max-2022-s3-bucket-${random_id.s3.hex}"
@@ -46,9 +45,9 @@ resource "aws_s3_bucket" "max-2022-s3-bucket" {
   })
 }
 
-resource "aws_s3_bucket_policy" "max-2022-s3-bucket" {
+resource "aws_s3_bucket_policy" "max-2022-s3" {
   provider = aws.master
-
+  depends_on = [aws_s3_bucket.max-2022-s3-bucket]
   bucket = "max-2022-s3-bucket-${random_id.s3.hex}"
 
   policy = <<POLICY
@@ -70,6 +69,6 @@ resource "aws_s3_bucket_policy" "max-2022-s3-bucket" {
 
 
 resource "random_id" "s3" {
-  byte_length = 8
+  byte_length = 5
 }
 
