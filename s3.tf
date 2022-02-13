@@ -3,11 +3,11 @@ resource "aws_s3_bucket" "max-2022-s3-bucket" {
   #checkov:skip=CKV_AWS_144: Ensure that S3 bucket has cross-region replication enabled
   #checkov:skip=CKV_AWS_145: Ensure that S3 buckets are encrypted with KMS by default
   #checkov:skip=CKV_AWS_52: Ensure S3 bucket has MFA delete enabled
-  provider = aws.master
+  provider            = aws.master
   acceleration_status = "Enabled"
   acl                 = "private"
-  arn                 = "arn:aws:s3:::max-2022-s3-bucket-${random_id.s3.hex}"
-  bucket              = "max-2022-s3-bucket-${random_id.s3.hex}"
+  arn                 = "arn:aws:s3:::max-2022-s3-bucket-${random_string.resource_code.result}"
+  bucket              = "max-2022-s3-bucket-${random_string.resource_code.result}"
 
   cors_rule {
     allowed_headers = ["*"]
@@ -37,7 +37,7 @@ resource "aws_s3_bucket" "max-2022-s3-bucket" {
   }
 
   website_domain   = "s3-website-ap-southeast-1.amazonaws.com"
-  website_endpoint = "max-2022-s3-bucket-${random_id.s3.hex}.s3-website-ap-southeast-1.amazonaws.com"
+  website_endpoint = "max-2022-s3-bucket-${random_string.resource_code.result}.s3-website-ap-southeast-1.amazonaws.com"
 
   tags = merge(local.base_bucket_tags, {
     Name        = "max-2022-s3-bucket",
@@ -46,9 +46,9 @@ resource "aws_s3_bucket" "max-2022-s3-bucket" {
 }
 
 resource "aws_s3_bucket_policy" "max-2022-s3" {
-  provider = aws.master
+  provider   = aws.master
   depends_on = [aws_s3_bucket.max-2022-s3-bucket]
-  bucket = "max-2022-s3-bucket-${random_id.s3.hex}"
+  bucket     = "max-2022-s3-bucket-${random_string.resource_code.result}"
 
   policy = <<POLICY
   {
@@ -60,15 +60,15 @@ resource "aws_s3_bucket_policy" "max-2022-s3" {
         "Principal": {
           "AWS": "arn:aws:iam::559190605129:root"
         },
-        "Resource": "arn:aws:s3:::max-2022-s3-bucket-${random_id.s3.hex}/*"
+        "Resource": "arn:aws:s3:::max-2022-s3-bucket-${random_string.resource_code.result}/*"
       }
     ]
   }
   POLICY
 }
 
-
-resource "random_id" "s3" {
-  byte_length = 5
+resource "random_string" "resource_code" {
+  length  = 5
+  special = false
+  upper   = false
 }
-
