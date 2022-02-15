@@ -28,7 +28,6 @@ terraform {
 provider "aws" {
   region = "ap-southeast-1"
   alias  = "master"
-
   allowed_account_ids = [559190605129]
 
   #access_key = data.vault_aws_access_credentials.creds.access_key

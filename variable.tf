@@ -37,7 +37,3 @@ variable "approle_secret_id" {
   type    = string
   default = ""
 }
-
-variable "aws_profile" {}
-variable "aws_region" {}
-variable "aws_account_id" {}
