@@ -45,30 +45,7 @@ module "pomelo_ml_production" {
     aws = aws.master
   }
 }
-module "log_bucket" {
-  source        = "terraform-aws-modules/s3-bucket/aws"
-  bucket        =  "pomelo-ml-production-${random_string.resource_code.result}"
-  acl           = "log-delivery-write"
-  force_destroy = true
-  # S3 bucket-level Public Access Block configuration
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-  # SSE encryption for bucket
-  server_side_encryption_configuration = {
-    rule = {
-      apply_server_side_encryption_by_default = {
-        kms_master_key_id = aws_kms_key.objects.arn
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
-  
-  providers = {
-    aws = aws.master
-  }
-}
+
 resource "aws_s3_bucket_metric" "pomelo_ml_production_bucket" {
   #TODO:
   #checkov:skip=CKV_AWS_144: Ensure that S3 bucket has cross-region replication enabled
