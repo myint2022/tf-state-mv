@@ -20,7 +20,7 @@ variable "enable_mfa_delete" {
 
 variable "s3_bucket_logs_target" {
   type    = string
-  default = "s3bucketlogsglobal"
+  default = "maxwl-s3-log"
 }
 
 variable "s3_bucket_logs_prefix" {
@@ -46,14 +46,4 @@ variable "access_key" {
 variable "secret_key" {
   type    = string
   default = ""
-}
-
-variable "s3_bucket_logs_target" {
-  type    = string
-  default = "maxwl-s3-log"
-}
-
-variable "enable_versioning" {
-  type    = bool
-  default = true
 }
