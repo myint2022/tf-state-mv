@@ -120,62 +120,9 @@ data "aws_iam_policy_document" "pomelo_ml_production" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::${local.master_account_id}:role/maxcli"]
+      identifiers = ["arn:aws:iam::559190605129:root"]
     }
   }
   provider = aws.master
 
 }
-
-/* module "pomelo_ml_production" {
-
-  source = "terraform-aws-modules/s3-bucket/aws"
-
-  version       = "2.14.1"
-  bucket        = "pomelo-ml-production-2022-02-13"
-  acl           = "private"
-  force_destroy = "true"
-  versioning = {
-    enabled    = true
-    mfa_delete = false
-  }
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-
-  server_side_encryption_configuration = {
-    rule = {
-      apply_server_side_encryption_by_default = {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-
-  cors_rule = [
-    {
-      allowed_methods = ["GET"]
-      allowed_origins = ["*"]
-      allowed_headers = ["*"]
-      expose_headers  = []
-      max_age_seconds = 9000
-    }
-
-  ]
-
-  website = {
-    index_document = "index.html"
-  }
-
-
-  tags = merge(local.base_bucket_tags, {
-    Name        = "pomelo-ml-production",
-    Environment = "staging"
-  })
-
-  providers = {
-    aws = aws.master
-  }
-
-} */
