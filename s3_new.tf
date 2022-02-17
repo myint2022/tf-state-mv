@@ -19,7 +19,7 @@ module "pomelo_ml_staging" {
         "Principal": {
           "AWS": "arn:aws:iam::559190605129:root"
         },
-        "Resource": "arn:aws:s3:::pomelo-ml-staging/*"
+        "Resource": "arn:aws:s3:::pomelo-ml-staging-2022-02-17/*"
       }
     ]
   }
@@ -76,19 +76,6 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
         sse_algorithm = "AES256"
       }
     }
-  }
-
-  website = {
-    index_document = "index.html"
-    routing_rules = jsonencode([{
-      Condition : {
-        KeyPrefixEquals : "docs/"
-      },
-      Redirect : {
-        ReplaceKeyPrefixWith : "documents/"
-      }
-    }])
-
   }
 
   tags = merge(local.base_bucket_tags, {
