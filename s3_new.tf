@@ -2,7 +2,7 @@ module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
-  name                   = "pomelo-ml-staging-2022-02-17"
+  name                   = "pomelo-ml-staging-2022-FEB"
   acl                    = "private"
   sse_algorithm          = "AES256"
   lifecycle_rule_enabled = false
@@ -19,7 +19,7 @@ module "pomelo_ml_staging" {
         "Principal": {
           "AWS": "arn:aws:iam::559190605129:root"
         },
-        "Resource": "arn:aws:s3:::pomelo-ml-staging-2022-02-17/*"
+        "Resource": "arn:aws:s3:::pomelo-ml-staging-2022-FEB-17/*"
       }
     ]
   }
@@ -51,7 +51,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.14.1"
 
-  bucket                  = "pomelo-ml-staging-2022-02-17"
+  bucket                  = "pomelo-ml-staging-2022-FEB-17"
   acl                     = "private"
   block_public_acls       = true
   block_public_policy     = true
@@ -102,7 +102,7 @@ data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
-    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-02-17/*"]
+    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-FEB-17/*"]
     actions   = ["s3:*"]
 
     principals {
