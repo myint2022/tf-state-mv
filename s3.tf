@@ -107,7 +107,7 @@ module "pomelo_ml_production" {
   }
 
 
-tags = merge(local.base_bucket_tags, {
+  tags = merge(local.base_bucket_tags, {
     Name        = "pomelo-ml-production",
     Environment = "staging"
   })
@@ -127,5 +127,9 @@ tags = merge(local.base_bucket_tags, {
 ]
 }
   POLICY
+
+  providers = {
+    aws = aws.master
+  }
 
 }

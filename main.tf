@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "max_account"
+    workspaces {
+      name = "tf-state-mv"
+    }
+  }
+
   required_version = ">= 0.14"
   required_providers {
     aws = {
