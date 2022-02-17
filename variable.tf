@@ -37,3 +37,7 @@ variable "approle_secret_id" {
   type    = string
   default = ""
 }
+
+varialbe "access_key" {}
+
+varialbe "secret_key" {}
