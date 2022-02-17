@@ -2,7 +2,7 @@ module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
-  name                   = "pomelo-ml-staging-2022-FEB"
+  name                   = "pomelo-ml-staging-2022-feb"
   acl                    = "private"
   sse_algorithm          = "AES256"
   lifecycle_rule_enabled = false
@@ -19,7 +19,7 @@ module "pomelo_ml_staging" {
         "Principal": {
           "AWS": "arn:aws:iam::559190605129:root"
         },
-        "Resource": "arn:aws:s3:::pomelo-ml-staging-2022-FEB-17/*"
+        "Resource": "arn:aws:s3:::pomelo-ml-staging-2022-feb/*"
       }
     ]
   }
