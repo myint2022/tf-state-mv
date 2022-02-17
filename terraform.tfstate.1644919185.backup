@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.1.5",
-  "serial": 180,
+  "serial": 179,
   "lineage": "58aa9728-6be4-58c3-4c29-6c73c2bba141",
   "outputs": {},
   "resources": [
@@ -25,31 +25,11 @@
     },
     {
       "mode": "managed",
-      "type": "aws_s3_bucket_policy",
-      "name": "max-2022-s3",
-      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].master",
-      "instances": [
-        {
-          "schema_version": 0,
-          "attributes": {
-            "bucket": "pomelo-ml-production-2022-02-13",
-            "id": "pomelo-ml-production-2022-02-13",
-            "policy": "  {\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n      {\n        \"Action\": \"s3:*\",\n        \"Effect\": \"Allow\",\n        \"Principal\": {\n          \"AWS\": \"arn:aws:iam::559190605129:root\"\n        },\n        \"Resource\": \"arn:aws:s3:::pomelo-ml-production-2022-02-13/*\"\n      }\n    ]\n  }\n"
-          },
-          "sensitive_attributes": [],
-          "private": "bnVsbA=="
-        }
-      ]
-    },
-    {
-      "module": "module.pomelo_ml_production",
-      "mode": "managed",
       "type": "aws_s3_bucket",
-      "name": "this",
+      "name": "pomelo-ml-production-2022-02-13",
       "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].master",
       "instances": [
         {
-          "index_key": 0,
           "schema_version": 0,
           "attributes": {
             "acceleration_status": "Enabled",
@@ -135,6 +115,27 @@
           },
           "sensitive_attributes": [],
           "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_policy",
+      "name": "max-2022-s3",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].master",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "bucket": "pomelo-ml-production-2022-02-13",
+            "id": "pomelo-ml-production-2022-02-13",
+            "policy": "  {\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n      {\n        \"Action\": \"s3:*\",\n        \"Effect\": \"Allow\",\n        \"Principal\": {\n          \"AWS\": \"arn:aws:iam::559190605129:root\"\n        },\n        \"Resource\": \"arn:aws:s3:::pomelo-ml-production-2022-02-13/*\"\n      }\n    ]\n  }\n"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.pomelo-ml-production-2022-02-13"
+          ]
         }
       ]
     }
