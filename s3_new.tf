@@ -45,13 +45,18 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   bucket = module.pomelo_ml_staging.bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
+/* 
+moved {
+  from = module.pomelo_ml_staging.aws_s3_bucket.default[0]
+  to = module.pomelo_ml_staging_s3.aws_s3_bucket.this[0]
+} */
 
 
-/* module "pomelo_ml_staging" {
+module "pomelo_ml_staging_s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.14.1"
 
-  bucket                  = "pomelo-ml-staging-2022-feb"
+  bucket                  = "pomelo-ml-staging-2022-feb-s3"
   acl                     = "private"
   block_public_acls       = true
   block_public_policy     = true
@@ -125,7 +130,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
 }
 
 
-
+/* 
 resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   provider = aws.master
   #TODO:
@@ -135,7 +140,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
 
   bucket = module.pomelo_ml_staging.s3_bucket_id
   name   = "pomelo-ml-staging-bucket"
-}
+} */
 
 data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
@@ -151,4 +156,4 @@ data "aws_iam_policy_document" "pomelo_ml_staging" {
   }
   provider = aws.master
 
-} */
+}
