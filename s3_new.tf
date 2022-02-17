@@ -17,7 +17,7 @@ module "pomelo_ml_staging" {
         "Action": "s3:*",
         "Effect": "Allow",
         "Principal": {
-          "AWS": "arn:aws:iam::${local.master_account_id}:role/data-engineering"
+          "AWS": "arn:aws:iam::559190605129:root"
         },
         "Resource": "arn:aws:s3:::pomelo-ml-staging/*"
       }
