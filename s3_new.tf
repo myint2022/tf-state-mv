@@ -45,8 +45,8 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   bucket = module.pomelo_ml_staging.bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
-/* 
-moved {
+
+/* moved {
   from = module.pomelo_ml_staging.aws_s3_bucket.default[0]
   to = module.pomelo_ml_staging_s3.aws_s3_bucket.this[0]
 } */
@@ -146,7 +146,7 @@ data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
-    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-feb/*"]
+    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-feb-s3/*"]
     actions   = ["s3:*"]
 
     principals {
