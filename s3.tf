@@ -90,23 +90,6 @@ module "pomelo_ml_production" {
     mfa_delete = false
   }
 
-  cors_rule = [
-    {
-      allowed_methods = ["PUT", "POST"]
-      allowed_origins = ["https://modules.tf", "https://terraform-aws-modules.modules.tf"]
-      allowed_headers = ["*"]
-      expose_headers  = ["ETag"]
-      max_age_seconds = 3000
-      }, {
-      allowed_methods = ["PUT"]
-      allowed_origins = ["https://example.com"]
-      allowed_headers = ["*"]
-      expose_headers  = ["ETag"]
-      max_age_seconds = 3000
-    }
-  ]
-
-
   server_side_encryption_configuration = {
     rule = {
       apply_server_side_encryption_by_default = {
@@ -117,7 +100,6 @@ module "pomelo_ml_production" {
 
   website = {
     index_document = "index.html"
-    error_document = "error.html"
     routing_rules = jsonencode([{
       Condition : {
         KeyPrefixEquals : "docs/"
