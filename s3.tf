@@ -115,7 +115,7 @@ data "aws_iam_policy_document" "pomelo_ml_production" {
   statement {
     sid       = ""
     effect    = "Allow"
-    resources = ["arn:aws:s3:::pomelo-ml-production/*"]
+    resources = ["arn:aws:s3:::pomelo-ml-production-2022-02-13/*"]
     actions   = ["s3:*"]
 
     principals {
