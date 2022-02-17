@@ -38,12 +38,12 @@ variable "approle_secret_id" {
   default = ""
 }
 
-varialbe "access_key" {
-  type = string
+variable "access_key" {
+  type    = string
   default = ""
 }
 
-varialbe "secret_key" {
-  type = string
+variable "secret_key" {
+  type    = string
   default = ""
 }
