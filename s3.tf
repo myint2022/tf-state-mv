@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "pomelo-ml-production-2022-02-13" {
+/* resource "aws_s3_bucket" "pomelo-ml-production-2022-02-13" {
   #TODO:
   #checkov:skip=CKV_AWS_144: Ensure that S3 bucket has cross-region replication enabled
   #checkov:skip=CKV_AWS_145: Ensure that S3 buckets are encrypted with KMS by default
@@ -65,9 +65,9 @@ resource "aws_s3_bucket_policy" "max-2022-s3" {
     ]
   }
   POLICY
-}
+} */
 
-/* module "pomelo_ml_production" {
+module "pomelo_ml_production" {
 
   source = "terraform-aws-modules/s3-bucket/aws"
 
@@ -134,4 +134,4 @@ resource "aws_s3_bucket_policy" "max-2022-s3" {
     aws = aws.master
   }
 
-} */
+}
