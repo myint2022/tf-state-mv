@@ -51,7 +51,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.14.1"
 
-  bucket                  = "pomelo-ml-staging-2022-FEB-17"
+  bucket                  = "pomelo-ml-staging-2022-feb"
   acl                     = "private"
   block_public_acls       = true
   block_public_policy     = true
@@ -102,7 +102,7 @@ data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
-    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-FEB-17/*"]
+    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-feb/*"]
     actions   = ["s3:*"]
 
     principals {
