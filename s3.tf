@@ -68,7 +68,7 @@ resource "aws_s3_bucket_policy" "max-2022-s3" {
 } */
 
 
-module "pomelo_ml_production" {
+/* module "pomelo_ml_production" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.14.1"
 
@@ -146,4 +146,4 @@ data "aws_iam_policy_document" "pomelo_ml_production" {
   }
   provider = aws.master
 
-}
+} */
