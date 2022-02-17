@@ -28,16 +28,6 @@ variable "s3_bucket_logs_prefix" {
   default = "logs/"
 }
 
-variable "approle_role_id" {
-  type    = string
-  default = ""
-}
-
-variable "approle_secret_id" {
-  type    = string
-  default = ""
-}
-
 variable "access_key" {
   type    = string
   default = ""

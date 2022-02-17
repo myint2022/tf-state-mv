@@ -28,7 +28,6 @@ module "pomelo_ml_staging" {
   tags = merge(local.base_bucket_tags, {
     Name        = "pomelo-ml-staging",
     Environment = "staging"
-    yor_trace   = "7dbb6631-4cd0-4b9c-9a40-8d6e15edc770"
   })
 
   providers = {
