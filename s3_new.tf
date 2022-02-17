@@ -2,7 +2,7 @@ module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
-  name                   = "pomelo-ml-staging"
+  name                   = "pomelo-ml-staging-2022-02-17"
   acl                    = "private"
   sse_algorithm          = "AES256"
   lifecycle_rule_enabled = false
