@@ -120,7 +120,7 @@ data "aws_iam_policy_document" "pomelo_ml_production" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::${local.master_account_id}:root"]
+      identifiers = ["arn:aws:iam::559190605129:root"]
     }
   }
   provider = aws.master
