@@ -122,7 +122,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
     aws = aws.master
   }
 }
- */
+ 
 
 
 resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
@@ -135,9 +135,9 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   bucket = module.pomelo_ml_staging_s3.s3_bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
+*/
 
-
-data "aws_iam_policy_document" "pomelo_ml_staging" {
+/* data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
@@ -174,7 +174,7 @@ data "aws_iam_policy_document" "pomelo_ml_staging" {
   }
   provider = aws.master
 }
-
+ */
 
 /* 
 data "aws_iam_policy_document" "pomelo_ml_staging" {
