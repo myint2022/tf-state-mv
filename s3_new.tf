@@ -1,4 +1,4 @@
-module "pomelo_ml_staging" {
+/*  module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
@@ -44,11 +44,11 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
 
   bucket = module.pomelo_ml_staging.bucket_id
   name   = "pomelo-ml-staging-bucket"
-}
+} */
 
 
 
-/* module "pomelo_ml_staging_s3" {
+module "pomelo_ml_staging" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.14.1"
 
@@ -174,7 +174,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   }
   provider = aws.master
 }
- */
+
 
 /* 
 data "aws_iam_policy_document" "pomelo_ml_staging" {
