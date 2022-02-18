@@ -122,7 +122,7 @@ module "pomelo_ml_staging" {
     aws = aws.master
   }
 }
- 
+
 
 
 resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
@@ -132,12 +132,12 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   #checkov:skip=CKV_AWS_145: Ensure that S3 buckets are encrypted with KMS by default
   #checkov:skip=CKV_AWS_52: Ensure S3 bucket has MFA delete enabled
 
-  bucket = module.pomelo_ml_staging_s3.s3_bucket_id
+  bucket = module.pomelo_ml_staging.s3_bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
 
 
- data "aws_iam_policy_document" "pomelo_ml_staging" {
+data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
