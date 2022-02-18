@@ -88,11 +88,41 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
     target_prefix = "log/"
   }
 
+  lifecycle_rule = [
+    {
+      id      = "log"
+      enabled = false
+      prefix  = "log/"
+
+      tags = {
+        rule      = "log"
+        autoclean = "true"
+      }
+
+      transition = [
+        {
+          days          = 30
+          storage_class = "ONEZONE_IA"
+          }, {
+          days          = 60
+          storage_class = "GLACIER"
+        }
+      ]
+
+      expiration = {
+        days = 90
+      }
+
+      noncurrent_version_expiration = {
+        days = 30
+      }
+  }]
+
   providers = {
     aws = aws.master
   }
 }
-
+ */
 
 
 resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
@@ -102,10 +132,51 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   #checkov:skip=CKV_AWS_145: Ensure that S3 buckets are encrypted with KMS by default
   #checkov:skip=CKV_AWS_52: Ensure S3 bucket has MFA delete enabled
 
-  bucket = module.pomelo_ml_staging.s3_bucket_id
+  bucket = module.pomelo_ml_staging_s3.s3_bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
 
+
+data "aws_iam_policy_document" "pomelo_ml_staging" {
+  statement {
+    sid       = ""
+    effect    = "Allow"
+    resources = ["arn:aws:s3:::pomelo-ml-staging-2022-feb/*"]
+    actions   = ["s3:*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::559190605129:root"]
+    }
+  }
+
+  statement {
+    sid    = "ForceSSLOnlyAccess"
+    effect = "Deny"
+
+    resources = [
+      "arn:aws:s3:::pomelo-ml-staging-2022-feb/*",
+      "arn:aws:s3:::pomelo-ml-staging-2022-feb",
+    ]
+
+    actions = ["s3:*"]
+
+    condition {
+      test     = "Bool"
+      variable = "aws:SecureTransport"
+      values   = ["false"]
+    }
+
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+  }
+  provider = aws.master
+}
+
+
+/* 
 data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
