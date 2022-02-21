@@ -46,11 +46,11 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   name   = "pomelo-ml-staging-bucket"
 }
 
-moved {
-  from = module.pomelo_ml_staging
-  to = module.pomelo_ml_staging_s3
+/* moved {
+  from = module.pomelo_ml_staging.aws_s3_bucket.default[0]
+  to = module.pomelo_ml_production.aws_s3_bucket.this[0]
 
-}
+}  */
 
 
 module "pomelo_ml_staging_s3" {
