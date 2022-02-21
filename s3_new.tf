@@ -1,4 +1,4 @@
- module "pomelo_ml_staging" {
+module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
@@ -46,10 +46,14 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   name   = "pomelo-ml-staging-bucket"
 }
 
+moved {
+  from = module.pomelo_ml_staging
+  to = module.pomelo_ml_staging_s3
+
+}
 
 
-
-/* module "pomelo_ml_staging" {
+module "pomelo_ml_staging_s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.14.1"
 
@@ -126,19 +130,18 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
 
 
 
-resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
+resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket_s3" {
   provider = aws.master
   #TODO:
   #checkov:skip=CKV_AWS_144: Ensure that S3 bucket has cross-region replication enabled
   #checkov:skip=CKV_AWS_145: Ensure that S3 buckets are encrypted with KMS by default
   #checkov:skip=CKV_AWS_52: Ensure S3 bucket has MFA delete enabled
-
-  bucket = module.pomelo_ml_staging.s3_bucket_id
+  bucket = module.pomelo_ml_staging_s3.s3_bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
- */
 
-/* data "aws_iam_policy_document" "pomelo_ml_staging" {
+
+data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
@@ -174,11 +177,11 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
     }
   }
   provider = aws.master
-} */
+}
 
 
-/* 
-data "aws_iam_policy_document" "pomelo_ml_staging" {
+
+/* data "aws_iam_policy_document" "pomelo_ml_staging" {
   statement {
     sid       = ""
     effect    = "Allow"
