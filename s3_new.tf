@@ -1,4 +1,4 @@
-/* module "pomelo_ml_staging" {
+module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
@@ -45,9 +45,9 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   bucket = module.pomelo_ml_staging.bucket_id
   name   = "pomelo-ml-staging-bucket"
 }
- */
 
-module "pomelo_ml_staging" {
+
+/* module "pomelo_ml_staging" {
   source  = "cloudposse/s3-log-storage/aws"
   version = "0.25.0"
 
@@ -93,7 +93,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
 
   bucket = module.pomelo_ml_staging_s3.bucket_id
   name   = "pomelo-ml-staging-bucket"
-}
+} */
 
 /* moved {
   from = module.pomelo_ml_staging.aws_s3_bucket.default[0]
