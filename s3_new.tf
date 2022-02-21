@@ -50,7 +50,7 @@ resource "aws_s3_bucket_metric" "pomelo_ml_staging_bucket" {
   from = module.pomelo_ml_staging.aws_s3_bucket.default[0]
   to = module.pomelo_ml_production.aws_s3_bucket.this[0]
 
-}  */
+} */
 
 
 module "pomelo_ml_staging_s3" {
